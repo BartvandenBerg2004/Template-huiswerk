@@ -1,306 +1,137 @@
-## Core latex/pdflatex auxiliary files:
-*.aux
-*.lof
-*.log
-*.lot
-*.fls
-*.out
-*.toc
-*.fmt
-*.fot
-*.cb
-*.cb2
-.*.lb
+\documentclass[a2paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs} 
+\usepackage{mathdots}
+\usepackage{mathdesign}
+\usepackage{parskip}
+\usepackage{times}  % Gebruik het Times New Roman-lettertype
+\usepackage{microtype}  % Verbeter typografie
+\usepackage{geometry}  % Pas marges aan
+\geometry{top=2cm,bottom=2cm,left=2cm,right=2cm}  % Stel marges in voor leesbaarheid
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{xcolor, pgfplots, caption, booktabs}
+\usepackage{listings}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{array} % Voor mooiere tabellen
+\usepackage{caption} % Voor het aanpassen van captions
+\usepackage{mdframed} % For boxed theorems and framed formulas
+\usepackage{xcolor}   % For colour definitions like gray!40
+\usepackage{microtype} % For better typography (like font 
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{mathpazo} % For better math font (Palatino)
+\usepackage{tikz} % For graphical elements (if needed)
+\usepackage{multicol} % For multi-column support (if needed)
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{referencelist.tex}
+\newtheorem{theorem}{Theorem}[section]
+\usepackage{tikz-3dplot}
+\usetikzlibrary{shapes.geometric, positioning, calc}
+% Geometry settings
+\geometry{a4paper, margin=1in}
+\usepackage{pgfmath}
+
+% Define a macro to calculate the sum
+\newcommand{\calcTotal}[5]{\pgfmathparse{#1+#2+#3+#4+#5}\pgfmathresult}
+
+% Header and Footer configuration
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{Programeermethoden}} % Bold header title
+\fancyhead[C]{\textbf{Opgave 4}} % Bold header subtitle
+\fancyhead[R]{\today}
+\fancyfoot[C]{Page \thepage\ of \pageref{LastPage} } % Simple page numbering
+
+% Title, author, and date information
+\title{\textbf{Programeermethoden} \\ Opdracht 4} % Bold title
+\author{Bart van den Berg}
+\date
+
+% New theorem environments with mdframed styling
+\mdfdefinestyle{theoremstyle}{
+    linecolor=black, % Border color
+    outerlinewidth=0.5pt,
+    roundcorner=5pt,
+    innertopmargin=10pt,
+    innerbottommargin=10pt,
+    innerrightmargin=10pt,
+    innerleftmargin=10pt,
+    backgroundcolor=white, % Background color
+    frametitlebackgroundcolor=gray!20,
+    frametitlefont=\bfseries,
+}
+
+\newmdtheoremenv[style=theoremstyle]{corollary}[theorem]{Corollary}
+
+% New Commands
+\newcommand{\union}{\cup}
+\newcommand{\inter}{\cap}
+% Define a custom command for the imaginary unit i
+\newcommand{\iunit}{\math{I}}
+
+% Define style for boxed formulas with lighter colours
+\mdfdefinestyle{formulabox}{
+    linecolor=gray!40, % Lighter gray for the border color
+    outerlinewidth=0.5pt,
+    roundcorner=5pt,
+    innertopmargin=5pt,
+    innerbottommargin=5pt,
+    innerrightmargin=5pt,
+    innerleftmargin=5pt,
+    backgroundcolor=gray!10, % Light background color
+}
+
+% Setup for listings (C++ code formatting)
+\lstdefinestyle{cppstyle}{
+    language=C++,                % Define the language as C++
+    basicstyle=\ttfamily\small,   % Use small monospaced font
+    keywordstyle=\color{blue},    % Keywords in blue
+    commentstyle=\color{grey!50},   % Comments in green
+    stringstyle=\color{red},      % Strings in red
+    numberstyle=\tiny\color{gray}, % Line numbers in gray
+    numbersep=5pt,               % Space between line numbers and code
+    stepnumber=1,                % Number every line
+    numbers=left,                % Place numbers on the left
+    backgroundcolor=\color{gray!10}, % Light grey background
+    showspaces=false,            % Do not show spaces
+    showstringspaces=false,      % Do not show string spaces
+    breaklines=true,             % Break long lines
+    frame=single,                % Add a frame around the code
+    tabsize=4,                   % Set tab size to 4 spaces
+    captionpos=b,                % Position caption at bottom
+     moredelim=**[is][\color{purple}]{@}{@} % Custom delimiters for highlighting
+}
+
+\begin{document}
+
+\begin{titlepage} % Title page environment
+\maketitle
+    \centering
+    \Huge 
+\begin{tikzpicture}
+% Set the view angle
+\def\azimuth{60}
+\def\elevation{30}
+\def\scale{4}
+
+% Draw the octahedron
+\draw[thick, fill=blue!30, opacity=0.6] (0, 0, 0) -- (0, 2, 2) -- (2, 0, 2) -- (0, 0, 0);
+\draw[thick, fill=blue!30, opacity=0.6] (0, 0, 0) -- (2, 0, 2) -- (2, 2, 0) -- (0, 0, 0);
+\draw[thick, fill=blue!30, opacity=0.6] (0, 0, 0) -- (0, 2, 2) -- (-2, 2, 0) -- (0, 0, 0);
+\draw[thick, fill=blue!30, opacity=0.6] (0, 0, 0) -- (-2, 2, 0) -- (-2, 0, 2) -- (0, 0, 0);
+\draw[thick, fill=yellow!50, opacity=0.5] (0, 2, 2) -- (2, 2, 0) -- (0, 0, 0) -- (-2, 0, 2);
+\draw[thick, fill=yellow!50, opacity=0.5] (-2, 2, 0) -- (-2, 0, 2) -- (2, 0, 2) -- (0, 2, 2);
+\draw[thick, fill=red!50, opacity=0.5] (2, 2, 0) -- (2, 0, 2) -- (0, 2, 2);
+\draw[thick, fill=red!50, opacity=0.5] (2, 2, 0) -- (0, 0, 0) -- (0, 2, 2);
+\end{tikzpicture}
+\end{titlepage}
 
-## Intermediate documents:
-*.dvi
-*.xdv
-*-converted-to.*
-# these rules might exclude image files for figures etc.
-# *.ps
-# *.eps
-# *.pdf
-
-## Generated if empty string is given at "Please type another file name for output:"
-.pdf
-
-## Bibliography auxiliary files (bibtex/biblatex/biber):
-*.bbl
-*.bcf
-*.blg
-*-blx.aux
-*-blx.bib
-*.run.xml
-
-## Build tool auxiliary files:
-*.fdb_latexmk
-*.synctex
-*.synctex(busy)
-*.synctex.gz
-*.synctex.gz(busy)
-*.pdfsync
-*.rubbercache
-rubber.cache
-
-## Build tool directories for auxiliary files
-# latexrun
-latex.out/
-
-## Auxiliary and intermediate files from other packages:
-# algorithms
-*.alg
-*.loa
-
-# achemso
-acs-*.bib
-
-# amsthm
-*.thm
-
-# beamer
-*.nav
-*.pre
-*.snm
-*.vrb
-
-# changes
-*.soc
-
-# comment
-*.cut
-
-# cprotect
-*.cpt
-
-# elsarticle (documentclass of Elsevier journals)
-*.spl
-
-# endnotes
-*.ent
-
-# fixme
-*.lox
-
-# feynmf/feynmp
-*.mf
-*.mp
-*.t[1-9]
-*.t[1-9][0-9]
-*.tfm
-
-#(r)(e)ledmac/(r)(e)ledpar
-*.end
-*.?end
-*.[1-9]
-*.[1-9][0-9]
-*.[1-9][0-9][0-9]
-*.[1-9]R
-*.[1-9][0-9]R
-*.[1-9][0-9][0-9]R
-*.eledsec[1-9]
-*.eledsec[1-9]R
-*.eledsec[1-9][0-9]
-*.eledsec[1-9][0-9]R
-*.eledsec[1-9][0-9][0-9]
-*.eledsec[1-9][0-9][0-9]R
-
-# glossaries
-*.acn
-*.acr
-*.glg
-*.glo
-*.gls
-*.glsdefs
-*.lzo
-*.lzs
-*.slg
-*.slo
-*.sls
-
-# uncomment this for glossaries-extra (will ignore makeindex's style files!)
-# *.ist
-
-# gnuplot
-*.gnuplot
-*.table
-
-# gnuplottex
-*-gnuplottex-*
-
-# gregoriotex
-*.gaux
-*.glog
-*.gtex
-
-# htlatex
-*.4ct
-*.4tc
-*.idv
-*.lg
-*.trc
-*.xref
-
-# hypdoc
-*.hd
-
-# hyperref
-*.brf
-
-# knitr
-*-concordance.tex
-# TODO Uncomment the next line if you use knitr and want to ignore its generated tikz files
-# *.tikz
-*-tikzDictionary
-
-# listings
-*.lol
-
-# luatexja-ruby
-*.ltjruby
-
-# makeidx
-*.idx
-*.ilg
-*.ind
-
-# minitoc
-*.maf
-*.mlf
-*.mlt
-*.mtc[0-9]*
-*.slf[0-9]*
-*.slt[0-9]*
-*.stc[0-9]*
-
-# minted
-_minted*
-*.pyg
-
-# morewrites
-*.mw
-
-# newpax
-*.newpax
-
-# nomencl
-*.nlg
-*.nlo
-*.nls
-
-# pax
-*.pax
-
-# pdfpcnotes
-*.pdfpc
-
-# sagetex
-*.sagetex.sage
-*.sagetex.py
-*.sagetex.scmd
-
-# scrwfile
-*.wrt
-
-# svg
-svg-inkscape/
-
-# sympy
-*.sout
-*.sympy
-sympy-plots-for-*.tex/
-
-# pdfcomment
-*.upa
-*.upb
-
-# pythontex
-*.pytxcode
-pythontex-files-*/
-
-# tcolorbox
-*.listing
-
-# thmtools
-*.loe
-
-# TikZ & PGF
-*.dpth
-*.md5
-*.auxlock
-
-# titletoc
-*.ptc
-
-# todonotes
-*.tdo
-
-# vhistory
-*.hst
-*.ver
-
-# easy-todo
-*.lod
-
-# xcolor
-*.xcp
-
-# xmpincl
-*.xmpi
-
-# xindy
-*.xdy
-
-# xypic precompiled matrices and outlines
-*.xyc
-*.xyd
-
-# endfloat
-*.ttt
-*.fff
-
-# Latexian
-TSWLatexianTemp*
-
-## Editors:
-# WinEdt
-*.bak
-*.sav
-
-# Texpad
-.texpadtmp
-
-# LyX
-*.lyx~
-
-# Kile
-*.backup
-
-# gummi
-.*.swp
-
-# KBibTeX
-*~[0-9]*
-
-# TeXnicCenter
-*.tps
-
-# auto folder when using emacs and auctex
-./auto/*
-*.el
-
-# expex forward references with \gathertags
-*-tags.tex
-
-# standalone packages
-*.sta
-
-# Makeindex log files
-*.lpz
-
-# xwatermark package
-*.xwm
-
-# REVTeX puts footnotes in the bibliography by default, unless the nofootinbib
-# option is specified. Footnotes are the stored in a file with suffix Notes.bib.
-# Uncomment the next line to have this generated file ignored.
-#*Notes.bib
